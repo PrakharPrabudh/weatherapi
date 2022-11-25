@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        body {
+            background-color: blanchedalmond;
+        }
+
+        #box {
+            text-align: center;
+            width: 350px;
+            height: 80vh;
+            box-shadow: 4px 4px 50px grey;
+            margin: auto;
+            margin-top: 50px;
+            background: #9fb7da;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .wave {
+            width: 700px;
+            height: 700px;
+            border-radius: 100%;
+            background-color: rgb(255 238 238 / 0.20);
+            position: relative;
+            bottom: -250px;
+            /*border: 4px solid #c3d8f7;*/
+        }
+
+        .one {
+            animation: wave 3s linear infinite;
+            animation-delay: 0s;
+        }
+
+        .two {
+            animation: wave 3s linear infinite;
+            animation-delay: -1s;
+            top: -442px;
+        }
+
+        .three {
+            animation: wave 3s linear infinite;
+            animation-delay: -2s;
+            top: -1159px;
+        }
+
+        @keyframes wave {
+            0% {
+                left: -100px;
+            }
+
+            16.66% {
+                left: -150px;
+            }
+
+            33.33% {
+                left: -200px;
+            }
+
+            50% {
+                left: -250px;
+            }
+
+            66.66% {
+                left: -200px;
+            }
+
+            83.33% {
+                left: -150px;
+            }
+
+            100% {
+                left: -100px;
+            }
+        }
+
+        #cloud {
+            display: none;
+        }
+
+        #rain {
+            display: none;
+        }
+
+        #content {
+            width: 350px;
+            position: absolute;
+            top: 120px;
+            z-index: 4;
+        }
+
+
+        .ind {
+            font-size: 80px;
+            color: #f5bc28;
+            animation: fontAnim 2s infinite linear;
+            transform-origin: 50% 50%;
+        }
+
+        #place {
+            font-size: 25px;
+            font-weight: 700;
+            margin-top: 170px;
+        }
+
+        #temp {
+            font-size: 40px;
+            margin-top: 30px;
+        }
+
+        @keyframes fontAnim {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="box">
+        <div id="content">
+            <div id="weather">
+                <i class="fas fa-{%mossam%} ind" id="sun"></i>
+            </div>
+
+            <div id="place"><i class="fas fa-street-view" style="font-size:25px; color:white;"></i> {%loc%}, IN</div>
+            <div id="dtime">TUE | JULY 13 | 10:05 PM</div>
+            <div id="temp">{%temp%} &deg;C</div>
+            <div id="maxMin">Min {%mintemp%} &deg;C | max {%maxtemp%} &deg;C</div>
+        </div>
+
+        <div class="wave one"></div>
+        <div class="wave two"></div>
+        <div class="wave three"></div>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+        var dtime = document.getElementById('dtime');
+        var dt = new Date();
+        var days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        var month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        var str;
+        if (dt.getHours() > 12) str = `${days[dt.getDay()]} | ${dt.getDate()} ${month[dt.getMonth()]} | ${dt.getHours() - 12}:${dt.getMinutes()} PM`;
+        else str = `${days[dt.getDay()]} | ${dt.getDate()} ${month[dt.getMonth()]} | ${dt.getHours()}:${dt.getMinutes()} PM`;
+        dtime.innerHTML = str;
+    </script>
+</body>
+</html>
